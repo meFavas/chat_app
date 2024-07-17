@@ -1,0 +1,22 @@
+// ignore_for_file: non_constant_identifier_names
+
+import 'package:firebase_auth/firebase_auth.dart';
+
+class Authservice {
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  Future<UserCredential> signInWithEmailPassword(String email, password) async {
+    try {
+      UserCredential userCredential = await auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return userCredential;
+    } on FirebaseAuthException catch (e) {
+      throw Exception(e.code);
+    }
+  }
+
+  Future<void>SignOut()async{
+    return await auth.signOut();
+  }
+}
