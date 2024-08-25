@@ -1,3 +1,6 @@
+// ignore_for_file: empty_catches, prefer_const_constructors
+
+import 'package:chat_app/services/auth/auth_service.dart';
 import 'package:chat_app/components/my_button.dart';
 import 'package:chat_app/components/my_textfield.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +14,32 @@ class Registerpage extends StatelessWidget {
       TextEditingController();
   final void Function()? onTap;
   Registerpage({super.key, required this.onTap});
-  void register() {}
+  //register method
+  void register(BuildContext context) {
+    final auth = Authservice();
+    if (passwordcontroller.text == confirmpasswordcontroller.text) {
+      try {
+        auth.signUpWithEmailPassword(
+          emailcontroller.text,
+          passwordcontroller.text,
+        );
+      } catch (e) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text(e.toString()),
+          ),
+        );
+      }
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text("password don't match"),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +84,7 @@ class Registerpage extends StatelessWidget {
             //login button
             Mybutton(
               text: "Register",
-              onTap: register,
+              onTap: () => register(context),
             ),
             const SizedBox(height: 25),
             Row(

@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_build_context_synchronously
 
-import 'package:chat_app/auth/auth_service.dart';
+import 'package:chat_app/services/auth/auth_service.dart';
 import 'package:chat_app/components/my_button.dart';
 import 'package:chat_app/components/my_textfield.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +23,7 @@ class Loginpage extends StatelessWidget {
         passwordcontroller.text,
       );
     } catch (e) {
-      showDialog(
+      showDialog( 
         context: context,
         builder: (context) => AlertDialog(
           title: Text(e.toString()),
